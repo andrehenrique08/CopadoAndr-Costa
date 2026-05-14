@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Copa do Mundo 2026</title>
+
+    <style>
+        body{
+            background-color: #111;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1{
+            margin-bottom: 20px;
+        }
+
+        form{
+            margin-bottom: 20px;
+        }
+
+        input{
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button{
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00aa55;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: #008844;
+        }
+
+        table{
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: #222;
+        }
+
+        th, td{
+            border: 1px solid #444;
+            padding: 12px;
+        }
+
+        th{
+            background-color: #000;
+        }
+
+        a{
+            color: red;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .acoes{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🏆 Copa do Mundo 2026</h1>
+
+    <p>Desenvolvido por {{ lista_dados[0][0] }}</p>
+
+    <form action="/add" method="POST">
+
+        <input type="text" name="selecao" placeholder="Seleção" required>
+
+        <input type="text" name="continente" placeholder="Continente" required>
+
+        <input type="number" name="titulos" placeholder="Títulos" required>
+
+        <button type="submit">Adicionar</button>
+
+    </form>
+
+    <div class="acoes">
+
+        <form action="/sort" method="POST">
+            <button type="submit">Ordenar</button>
+        </form>
+
+        <form action="/reverse" method="POST">
+            <button type="submit">Inverter</button>
+        </form>
+
+        <form action="/clear" method="POST">
+            <button type="submit">Limpar</button>
+        </form>
+
+    </div>
+
+    <table>
+
+        <tr>
+            <th>Seleção</th>
+            <th>Continente</th>
+            <th>Títulos</th>
+            <th>Ação</th>
+        </tr>
+
+        {% for item in lista_front %}
+
+        <tr>
+
+            <td>{{ item[0] }}</td>
+            <td>{{ item[1] }}</td>
+            <td>{{ item[2] }}</td>
+
+            <td>
+                <a href="/delete/{{ item[0] }}">
+                    Excluir
+                </a>
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>
